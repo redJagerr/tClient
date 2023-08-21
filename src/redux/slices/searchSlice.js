@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { renderServer } from 'utils/constants';
 
 const initialState = {
 	cityInfo: {
@@ -15,9 +16,7 @@ export const fetchCityInfo = createAsyncThunk(
 	'search/fetchCityInfo',
 	async (id, { rejectWithValue }) => {
 		try {
-			const response = await axios.get(
-				`https://travel-app-server-njn4.onrender.com/${id}/search`
-			);
+			const response = await axios.get(`${renderServer}/${id}/search`);
 
 			return response.data;
 		} catch (error) {
@@ -29,9 +28,7 @@ export const searchRequest = createAsyncThunk(
 	'search/searchRequest',
 	async item => {
 		console.log(item);
-		const response = await axios.get(
-			`https://travel-app-server-njn4.onrender.com/${item}`
-		);
+		const response = await axios.get(`${renderServer}/${item}`);
 		return response.data;
 	}
 );

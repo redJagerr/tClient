@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { renderServer } from 'utils/constants';
 
 const initialState = {
 	categories: [],
@@ -8,9 +9,7 @@ const initialState = {
 export const fetchPlaceCategories = createAsyncThunk(
 	'placeCategories/fetchPlaceCategories',
 	async () => {
-		const response = await axios.get(
-			`https://travel-app-server-njn4.onrender.com/filters/categories`
-		);
+		const response = await axios.get(`${renderServer}/filters/categories`);
 		return response.data;
 	}
 );

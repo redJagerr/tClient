@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { renderServer } from 'utils/constants';
 
 const initialState = {
 	places: [],
@@ -13,7 +14,7 @@ export const fetchPlaces = createAsyncThunk(
 	async (filters, { rejectWithValue }) => {
 		try {
 			const response = await axios.get(
-				`https://travel-app-server-njn4.onrender.com/${filters.id}/places?${filters.filters}`
+				`${renderServer}/${filters.id}/places?${filters.filters}`
 			);
 			return response.data;
 		} catch (error) {
@@ -26,10 +27,7 @@ export const putLike = createAsyncThunk(
 	async (likeData, { rejectWithValue, dispatch }) => {
 		try {
 			const { likeCount, placeId, cityId } = likeData;
-			await axios.put(
-				`https://travel-app-server-njn4.onrender.com/${cityId}/${placeId}/likes`,
-				likeCount
-			);
+			await axios.put(`${renderServer}/${cityId}/${placeId}/likes`, likeCount);
 			dispatch(updateLikes({ placeId, likes: likeCount.likes }));
 		} catch (error) {
 			return rejectWithValue(error.message);
@@ -42,7 +40,7 @@ export const putRating = createAsyncThunk(
 		try {
 			const { cityId, placeId, ratingCount } = ratingData;
 			const response = await axios.put(
-				`https://travel-app-server-njn4.onrender.com/${cityId}/${placeId}/rating`,
+				`${renderServer}/${cityId}/${placeId}/rating`,
 				ratingCount
 			);
 			return response;

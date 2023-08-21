@@ -93,7 +93,7 @@ const Header = () => {
 							>
 								{photo !== '' ? (
 									<img
-										src={`https://travel-app-server-njn4.onrender.com/${photo}`}
+										src={`https://tserver-bjoj.onrender.com/${photo}`}
 										alt=''
 										className='image'
 									/>

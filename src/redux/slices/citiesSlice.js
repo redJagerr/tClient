@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { renderServer } from 'utils/constants';
 const initialState = {
 	items: [],
 	status: 'idle',
@@ -10,9 +11,7 @@ export const fetchCities = createAsyncThunk(
 	'citiesSlice/fetchCities',
 	async (search = '', { rejectWithValue }) => {
 		try {
-			const res = await axios.get(
-				`https://travel-app-server-njn4.onrender.com/${search}`
-			);
+			const res = await axios.get(`${renderServer}/${search}`);
 			return res.data;
 		} catch (error) {
 			return rejectWithValue(error.message);

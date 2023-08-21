@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { renderServer } from 'utils/constants';
 
 const initialState = {
 	placeData: [
@@ -24,7 +25,7 @@ export const fetchSinglePlace = createAsyncThunk(
 	'places/fetchSinglePlace',
 	async data => {
 		const response = await axios.get(
-			`https://travel-app-server-njn4.onrender.com/${data.cityId}/places/${data.placeId}`
+			`${renderServer}/${data.cityId}/places/${data.placeId}`
 		);
 		return response.data;
 	}
@@ -32,7 +33,7 @@ export const fetchSinglePlace = createAsyncThunk(
 
 export const postReview = createAsyncThunk('place/postReview', async data => {
 	const response = await axios.post(
-		`https://travel-app-server-njn4.onrender.com/${data.cityId}/${data.placeId}/reviews`,
+		`${renderServer}/${data.cityId}/${data.placeId}/reviews`,
 		data.review
 	);
 	return response;
