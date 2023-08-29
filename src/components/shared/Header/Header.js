@@ -10,8 +10,8 @@ import { removeUser } from 'redux/slices/userSlice';
 import { useAuth } from 'hooks/use-auth';
 import { useOnClickOutside } from 'hooks/use-onclick-outside';
 
-import logo from 'assets/pictures/svg/logo.svg';
-import logoDark from 'assets/pictures/svg/logo-dark.svg';
+import logo from 'assets/pictures/svg/logo.png';
+import logoDark from 'assets/pictures/svg/logo-dark.png';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaSun, FaUserCircle } from 'react-icons/fa';
